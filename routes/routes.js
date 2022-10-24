@@ -40,7 +40,7 @@ const upload = multer({
 
 
 app.post("", upload, (req, res, next) => {
-  const product = new products({
+  const product = new image({
     // // _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     price: req.body.price,

@@ -9,6 +9,7 @@ const express = require('express');
 
 const app = express();
 
+app.use(express.static('uploads'));
 
 app.use(bodyparser.json());
 
@@ -23,7 +24,6 @@ mongoose.connect(process.env.DATABASE||"mongodb+srv://pidian:pidian12345@cluster
 
 })
 
-app.use(express.static('uploads'));
 
 
 
