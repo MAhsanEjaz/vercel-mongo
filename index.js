@@ -5,11 +5,13 @@ const mongoose = require('mongoose');
 const Route = require('./routes/routes');
 
 const bodyparser = require('body-parser');
+const express = require('express');
 
-const app = experss();
+const app = express();
 
 
 app.use(bodyparser.json());
+
 
 mongoose.connect(process.env.DATABASE||"mongodb+srv://pidian:pidian12345@cluster0.ugrkszb.mongodb.net/?retryWrites=true&w=majority", (err)=>{
 
@@ -20,6 +22,9 @@ mongoose.connect(process.env.DATABASE||"mongodb+srv://pidian:pidian12345@cluster
     }
 
 })
+
+app.use(express.static('uploads'));
+
 
 
 const PORT = process.env.PORT || 4000;
