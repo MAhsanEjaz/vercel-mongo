@@ -70,7 +70,7 @@ app.post("", upload, (req, res, next) => {
 
 
       
-  app.get("/image", (req, res, next) => {
+  app.get("", (req, res, next) => {
     image.find()
       .select("name price _id productImage")
       .exec()
