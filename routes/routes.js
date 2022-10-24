@@ -25,13 +25,13 @@ const storage = multer.diskStorage({
          cb(null, false);
      }
  }
- 
+
 const upload = multer({
   storage: storage,
   limits: {
     fileSize: 1024 * 1024 * 5
   },
-  fileFilter: fileFilter
+  fileFilter: filter
 });
 
 
@@ -41,12 +41,12 @@ const upload = multer({
 
 
 
-app.post("", upload, (req, res, next) => {
+app.post("", upload.single('image'), (req, res, next) => {
     const product = new image({
       // _id: new mongoose.Types.ObjectId(),
       name: req.body.name,
       price: req.body.price,
-      // productImage: req.file.filename
+      productImage: req.file.filename
     });
     product
       .save()
