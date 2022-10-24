@@ -37,7 +37,7 @@ const storage = multer.diskStorage({
 
 
 
-app.post("/imagePost", upload, (req, res, next) => {
+app.post("", upload, (req, res, next) => {
     const product = new image({
       // // _id: new mongoose.Types.ObjectId(),
       name: req.body.name,
