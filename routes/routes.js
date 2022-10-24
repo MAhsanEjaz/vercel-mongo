@@ -39,10 +39,10 @@ const storage = multer.diskStorage({
 
 app.post("", upload, (req, res, next) => {
     const product = new image({
-      _id: new mongoose.Types.ObjectId(),
+      // _id: new mongoose.Types.ObjectId(),
       name: req.body.name,
       price: req.body.price,
-      productImage: req.file.filename
+      // productImage: req.file.filename
     });
     product
       .save()
