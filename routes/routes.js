@@ -21,4 +21,10 @@ app.post('', (req, res)=>{
 })
 
 
+app.get('',async(req, res)=>{
+    const data = await post.find();
+    res.json(data);
+} )
+
+
 module.exports = app;
