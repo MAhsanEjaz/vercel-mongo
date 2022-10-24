@@ -10,26 +10,39 @@ app.use(express.static('uploads'));
 
 
 
+// const storage = multer.diskStorage({
+//   destination: function(req, file, cb){
+//    cb(null, './uploads/')
+//   },
+//   filename: function(req, file, cb) {
+//    cb(null, Date.now() + file.originalname);
+//  }
+// });
+
+// // const filter = (req, file , cb)=>{
+// //     if(file.mimetype == 'image/jpeg' || file.mimetype == 'image/png'  || file.mimetype == image/gif){
+// //         cb(null, true);
+// //     }else{
+// //         cb(null, false);
+// //     }
+// // }
+// const upload = multer({
+//    storage : storage, 
+//    // fileFilter: filter
+// }).single('image');
+
+
 const storage = multer.diskStorage({
-  destination: function(req, file, cb){
-   cb(null, './uploads/')
+  destination: function (req, file, cb) {
+    cb(null, '/tmp/my-uploads')
   },
-  filename: function(req, file, cb) {
-   cb(null, Date.now() + file.originalname);
- }
-});
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix)
+  }
+})
 
-// const filter = (req, file , cb)=>{
-//     if(file.mimetype == 'image/jpeg' || file.mimetype == 'image/png'  || file.mimetype == image/gif){
-//         cb(null, true);
-//     }else{
-//         cb(null, false);
-//     }
-// }
-const upload = multer({
-   storage : storage, 
-   // fileFilter: filter
-}).single('image');
+const upload = multer({ storage: storage })
 
 
 
@@ -38,8 +51,7 @@ const upload = multer({
 
 
 
-
-app.post("", upload, (req, res, next) => {
+app.post("", upload.single('images'), (req, res, next) => {
   const product = new image({
     // // _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
