@@ -39,7 +39,7 @@ const storage = multer.diskStorage({
 
 app.post("", upload, (req, res, next) => {
     const product = new image({
-      // // _id: new mongoose.Types.ObjectId(),
+      _id: new mongoose.Types.ObjectId(),
       name: req.body.name,
       price: req.body.price,
       productImage: req.file.filename
@@ -110,25 +110,25 @@ app.post("", upload, (req, res, next) => {
 
 
 
-app.post('', (req, res)=>{
+// app.post('', (req, res)=>{
 
-    const data = post({
+//     const data = post({
 
-        name: req.body.name,
-        address: req.body.address
+//         name: req.body.name,
+//         address: req.body.address
 
 
-    })
+//     })
 
-    data.save().then(myData=>{
-        res.json(myData);
-    })
-})
+//     data.save().then(myData=>{
+//         res.json(myData);
+//     })
+// })
 
-app.get('',async(req, res)=>{
-    const data = await post.find();
-    res.json(data);
-} )
+// app.get('',async(req, res)=>{
+//     const data = await post.find();
+//     res.json(data);
+// } )
 
 
 module.exports = app;
