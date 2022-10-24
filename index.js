@@ -11,7 +11,7 @@ const app = experss();
 
 app.use(bodyparser.json());
 
-mongoose.connect('mongodb://localhost:27017', (err)=>{
+mongoose.connect(process.env.DATABASE||"mongodb+srv://pidian:pidian12345@cluster0.ugrkszb.mongodb.net/?retryWrites=true&w=majority", (err)=>{
 
     if(!err){
         console.log('Data Connected')
